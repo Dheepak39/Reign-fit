@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reign — AI Fitness Agent</title>
+  <meta name="description" content="India's AI fitness agent. On-device rep counting, form correction, and autonomous training plans." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold:       #A855F7;
+      --gold-light: #C084FC;
+      --near-black: #0A0A0F;
+      --surface:    #18181F;
+      --surface-2:  #1E1E28;
+      --off-white:  #F0EBE0;
+      --muted:      #6B7280;
+      --border:     rgba(168,85,247,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--near-black);
+      color: var(--off-white);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 72px 24px 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% -5%, rgba(168,85,247,0.12) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .logo-wrap {
+      display: inline-block;
+      margin-bottom: 24px;
+      animation: logoFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 24px rgba(168,85,247,0.35));
+    }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px);  filter: drop-shadow(0 0 18px rgba(168,85,247,0.30)); }
+      50%       { transform: translateY(-8px); filter: drop-shadow(0 8px 30px rgba(168,85,247,0.55)); }
+    }
+    .logo-crown {
+      font-size: 72px;
+      line-height: 1;
+      display: block;
+    }
+
+    .app-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(36px, 8vw, 56px);
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .tagline-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .tagline-word {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding: 0 16px;
+    }
+    .tagline-dot {
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 36px;
+    }
+
+    .hero-text {
+      font-size: clamp(15px, 2.5vw, 17px);
+      color: #C0BAB0;
+      line-height: 1.9;
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 56px;
+    }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 480px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature:last-child { border-bottom: none; }
+
+    .feature-icon {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      opacity: 0.8;
+      min-width: 24px;
+      padding-top: 4px;
+    }
+
+    .feature-text {
+      font-size: 14px;
+      color: #C0BAB0;
+      line-height: 1.7;
+    }
+    .feature-text strong {
+      color: var(--off-white);
+      font-weight: 400;
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--gold-light); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-wrap">
+      <span class="logo-crown">👑</span>
+    </div>
+
+    <div class="app-name">Reign</div>
+
+    <div class="tagline-row">
+      <span class="tagline-word">Perceive</span>
+      <div class="tagline-dot"></div>
+      <span class="tagline-word">Reason</span>
+      <div class="tagline-dot"></div>
+      <span class="tagline-word">Reign</span>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <p class="hero-text">
+      India's first AI fitness agent.<br>
+      Sees your reps. Corrects your form.<br>
+      Owns your territory. Plans your next session — autonomously.
+    </p>
+
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Coming Soon
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">01</div>
+        <div class="feature-text">
+          <strong>On-Device Intelligence</strong>
+          Rep counting and form correction powered by ML Kit BlazePose — fully offline, no internet required.
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">02</div>
+        <div class="feature-text">
+          <strong>Autonomous Coaching</strong>
+          Gemini generates your weekly training plan without you asking. It acts — you just train.
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">03</div>
+        <div class="feature-text">
+          <strong>Territory System</strong>
+          Every workout claims your PIN code. Dominate your district. Rule the leaderboard.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <footer>
+    <p>&copy; 2026 Reign &nbsp;·&nbsp; <a href="https://dheepak39.github.io/Reign-privacy/" target="_blank">Privacy Policy</a> &nbsp;·&nbsp; reignfit.in</p>
+  </footer>
+
+</body>
+</html>
