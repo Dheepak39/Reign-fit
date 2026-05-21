@@ -66,9 +66,10 @@
       0%, 100% { transform: translateY(0px);  filter: drop-shadow(0 0 18px rgba(168,85,247,0.30)); }
       50%       { transform: translateY(-8px); filter: drop-shadow(0 8px 30px rgba(168,85,247,0.55)); }
     }
-    .logo-crown {
-      font-size: 72px;
-      line-height: 1;
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
       display: block;
     }
 
@@ -215,7 +216,7 @@
 
   <header>
     <div class="logo-wrap">
-      <span class="logo-crown">👑</span>
+      <img src="logo.png" alt="Reign" class="logo-img" />
     </div>
 
     <div class="app-name">Reign</div>
