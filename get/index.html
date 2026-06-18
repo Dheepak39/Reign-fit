@@ -3,323 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Get Reign — Join the Beta</title>
-  <meta name="description" content="Join the Reign closed beta. Two steps to start competing." />
+  <title>Get Reign — Redirecting to Google Play</title>
+  <meta name="description" content="Download Reign on Google Play." />
+
+  <!-- Redirect to Google Play. Meta refresh is the fallback for browsers that block JS. -->
+  <meta http-equiv="refresh" content="0; url=https://play.google.com/store/apps/details?id=com.reign.app" />
+  <link rel="canonical" href="https://play.google.com/store/apps/details?id=com.reign.app" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --purple:      #7C3AED;
-      --purple-l:    #A78BFA;
-      --purple-dim:  rgba(124,58,237,0.14);
-      --near-black:  #06060C;
-      --surface:     #0E0E18;
-      --surface-2:   #141420;
-      --off-white:   #F2F0F8;
-      --muted:       #64748B;
-      --muted-2:     #94A3B8;
-      --border:      rgba(124,58,237,0.16);
-      --border-2:    rgba(124,58,237,0.08);
+      --purple:     #7C3AED;
+      --purple-l:   #A78BFA;
+      --near-black: #06060C;
+      --surface:    #0E0E18;
+      --off-white:  #F2F0F8;
+      --muted:      #94A3B8;
+      --border:     rgba(124,58,237,0.16);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
       background: var(--near-black);
       color: var(--off-white);
       font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 1.7;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-    }
-
-    /* NAV */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 60px;
-      background: rgba(6,6,12,0.82);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-2);
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    .nav-logo img { width: 26px; height: 26px; object-fit: contain; }
-    .nav-logo-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--off-white);
-      text-transform: uppercase;
-    }
-    .nav-back {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted-2);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--off-white); }
-
-    /* MAIN */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    main::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 65%),
-        radial-gradient(ellipse 30% 30% at 85% 80%, rgba(124,58,237,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    /* CARD */
-    .card {
-      position: relative;
-      z-index: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 52px 48px;
-      max-width: 520px;
-      width: 100%;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 0 1px var(--border-2);
-    }
-
-    .logo-wrap {
-      text-align: center;
-      margin-bottom: 28px;
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 24px rgba(124,58,237,0.4));
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-7px); }
-    }
-    .logo-wrap img { width: 64px; height: 64px; object-fit: contain; }
-
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      color: var(--purple-l);
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .card-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(26px, 5vw, 34px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-align: center;
-      line-height: 1.2;
-      margin-bottom: 8px;
-      color: var(--off-white);
-    }
-    .card-title span {
-      background: linear-gradient(135deg, #A78BFA, #7C3AED);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .card-subtitle {
-      font-size: 14px;
-      color: var(--muted-2);
-      text-align: center;
-    }
-    .divider {
-      width: 48px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--purple), transparent);
-      margin: 24px auto 32px;
-      border-radius: 2px;
-    }
-
-    /* STEPS */
-    .steps { display: flex; flex-direction: column; gap: 12px; }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: var(--surface-2);
-      border: 1px solid var(--border-2);
-      border-radius: 14px;
-      padding: 22px 22px;
-      transition: border-color 0.2s;
-    }
-    .step:hover { border-color: var(--border); }
-    .step-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--purple-l);
-      background: var(--purple-dim);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .step-body { flex: 1; }
-    .step-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--off-white);
-      margin-bottom: 4px;
-      letter-spacing: -0.01em;
-    }
-    .step-desc {
-      font-size: 13px;
-      color: var(--muted-2);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-    .step-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--purple-l);
-      text-decoration: none;
-      padding: 9px 16px;
-      background: var(--purple-dim);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .step-link:hover {
-      background: rgba(124,58,237,0.22);
-      border-color: var(--purple-l);
-    }
-    .step-note {
-      margin-top: 10px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* DISCLAIMER */
-    .disclaimer {
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-2);
-      font-size: 12px;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border-2);
       padding: 24px;
       text-align: center;
-      font-size: 12px;
-      color: var(--muted);
     }
-    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--off-white); }
-
-    @media (max-width: 600px) {
-      .card { padding: 36px 24px; }
-      nav { padding: 0 20px; }
+    .box { max-width: 360px; }
+    .logo {
+      width: 64px; height: 64px;
+      object-fit: contain;
+      margin: 0 auto 28px;
+      display: block;
+      filter: drop-shadow(0 0 24px rgba(124,58,237,0.4));
+    }
+    .spinner {
+      width: 26px; height: 26px;
+      border: 2.5px solid rgba(124,58,237,0.25);
+      border-top-color: var(--purple-l);
+      border-radius: 50%;
+      margin: 0 auto 22px;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 26px; }
+    a.btn {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(124,58,237,0.4);
     }
   </style>
 </head>
 <body>
+  <div class="box">
+    <img src="../logo.png" alt="Reign" class="logo" />
+    <div class="spinner"></div>
+    <h1>Taking you to Google Play…</h1>
+    <p>If you aren't redirected automatically, tap the button below.</p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.reign.app">Open in Google Play</a>
+  </div>
 
-  <nav>
-    <a href="../" class="nav-logo">
-      <img src="../logo.png" alt="Reign" />
-      <span class="nav-logo-text">Reign</span>
-    </a>
-    <a href="../" class="nav-back">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      Back
-    </a>
-  </nav>
-
-  <main>
-    <div class="card">
-      <div class="logo-wrap">
-        <img src="../logo.png" alt="Reign" />
-      </div>
-
-      <p class="eyebrow">Closed Beta</p>
-      <h1 class="card-title">Get <span>Reign</span></h1>
-      <p class="card-subtitle">Two steps to start competing.</p>
-      <div class="divider"></div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div class="step-body">
-            <div class="step-title">Join the Google Group</div>
-            <div class="step-desc">This unlocks your access to the closed testing track on the Play Store.</div>
-            <a href="https://groups.google.com/g/reign-beta-testers" target="_blank" rel="noopener" class="step-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Join the group
-            </a>
-            <p class="step-note">It may take a few minutes for your access to activate after joining.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-num">02</div>
-          <div class="step-body">
-            <div class="step-title">Download the App</div>
-            <div class="step-desc">Install from the Play Store once your access is active.</div>
-            <a href="https://play.google.com/store/apps/details?id=com.reign.app" target="_blank" rel="noopener" class="step-link">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download on Play Store
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="disclaimer">
-        Android only &nbsp;·&nbsp; Free &nbsp;·&nbsp; No account required to train
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <a href="../">← reignfit.app</a>
-    &nbsp;·&nbsp;
-    <a href="../privacy-policy/">Privacy Policy</a>
-    &nbsp;·&nbsp;
-    © 2026 Reign. Built in India.
-  </footer>
-
+  <script>
+    // Primary redirect. Runs immediately so it also works inside in-app
+    // browsers (e.g. Instagram) where direct Play Store links can be blocked.
+    window.location.replace("https://play.google.com/store/apps/details?id=com.reign.app");
+  </script>
 </body>
 </html>
